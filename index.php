@@ -28,6 +28,15 @@ mysql_set_charset('utf8',$link);
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+ <script type="text/javascript">
+var auto_refresh = setInterval(
+function ()
+{
+$('#tableHolder').load('refresh.php').fadeIn("slow");
+}, 10000); // refresh every 10000 milliseconds
+
+
+</script>
   </head>
 
   <body>
@@ -52,27 +61,7 @@ mysql_set_charset('utf8',$link);
     </div>
 
     <div class="container">
-
-    <table  class="table table-striped">
-    <thead><tr><th>ID</th><th>題目</th><th>姓名</th><th>分數</th><th>開始時間</th><th>完成時間</th><tr></thead>
-    <tbody>
-        <?php
-$sql="SELECT * from test";
-$result=mysql_query($sql);
-    for($j=0;$j<mysql_num_rows($result);$j++)
-{
- echo "<TR>";
- for ($k=0;$k<mysql_num_fields($result);$k++)
- {
-   echo "<TD>".mysql_result($result,$j,$k)."</TD>";
- }
- echo "</TR>";
-}
-echo "</TABLE>";
-?>
-    </tbody>
-    </table>
-
+<div  id="tableHolder"></div>
     </div><!-- /.container -->
 
 
@@ -80,6 +69,6 @@ echo "</TABLE>";
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../irs/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
